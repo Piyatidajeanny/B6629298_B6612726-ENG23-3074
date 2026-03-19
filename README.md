@@ -1,9 +1,6 @@
-เช็คชื่อ 
-https://forms.gle/3Apfu8EHiadf1JMv7
+Assignment #3
 
+B6629298 นางสาวปิยธิดา บัวบาน
+ฺB6612726 นายวชิระ แก้วเมือง
 
-#Install ingress
-```
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
-```
 
