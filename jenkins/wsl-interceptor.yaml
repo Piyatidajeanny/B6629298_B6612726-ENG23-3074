@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wsl-ssh-interceptor
+spec:
+  ports:
+    - port: 22
+      targetPort: 22
+  externalIPs:
+    - 172.21.38.161
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: wsl-ssh-interceptor
+subsets:
+  - addresses:
+      - ip: 192.168.65.254
+    ports:
+      - port: 22

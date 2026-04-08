@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-ssh-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins-ssh-agent
+  template:
+    metadata:
+      labels:
+        app: jenkins-ssh-agent
+    spec:
+      containers:
+      - name: ssh-agent
+        image: jenkins/ssh-agent:latest-jdk17
+        env:
+        - name: JENKINS_AGENT_SSH_PUBKEY
+          value: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/skHq3nAk2QWKVLlhFNi1eCV7cMVjFcyqROeuUwEhNMCS4rcW1JWHrz9L36umGj0t6DAFdSER0OGD2uzzXjA9u3+adE54NN9INbzCqlmIU1rS6WHatt1eIpTBkWRuLxN94FmSN9pHRkBXyMkNdqIOTEQfQS6pVMinaFIrZFEr6XzdVDgJul/yxbZv1R9ljuAMvkHQVJYXD5SaJbl2OQfihk5QrUbcAXZpaOxWFo4897Zghw6CLkuYEEb+LdARdHN2HW23NUD/INz9JeLV9ferGueY3xu3iz1gjK12bqJ/3msfzqBTsHRRfH3NSAnG/GDehn2AYJnQCrXei1iMUwo7 aphi@Aphi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-ssh-agent-svc
+spec:
+  selector:
+    app: jenkins-ssh-agent
+  ports:
+    - protocol: TCP
+      port: 22
+      targetPort: 22
